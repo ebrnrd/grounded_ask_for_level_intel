@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<game_dialogs>
+
+    <dialog id="grounded_ask_for_intel">
+		<precondition>dialogs_axr_companion.is_not_actor_companion</precondition>
+        <!--<init_func>grounded_ask_for_level_intel.init_npc_intel</init_func>-->
+        <phrase_list>
+            <phrase id="0">
+                <text>have level intel?</text>
+                <next>1</next>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="1">
+                <precondition>grounded_ask_for_level_intel.is_npc_free_intel</precondition>
+                <script_text>grounded_ask_for_level_intel.build_intel_string</script_text>
+            </phrase>
+            <phrase id="2">
+                <precondition>grounded_ask_for_level_intel.is_npc_paid_intel</precondition>
+                <text>i want money</text>
+                <next>20</next>
+                <next>21</next>
+            </phrase>
+            <phrase id="3">
+                <precondition>grounded_ask_for_level_intel.is_npc_refuse_intel</precondition>
+                <text>piss off</text>
+            </phrase>
+            <!-- Payment branch -->
+            <phrase id="20">
+                <text>ok i pay</text>
+                <precondition>grounded_ask_for_level_intel.can_actor_afford_intel</precondition>
+                <action>grounded_ask_for_level_intel.actor_pay_intel</action>
+                <next>100</next>
+            </phrase>
+
+            <phrase id="21">
+                <text>nevermind</text>
+            </phrase>
+
+            <phrase id="100">
+                <script_text>grounded_ask_for_level_intel.build_intel_string</script_text>
+            </phrase>
+
+        </phrase_list>
+    </dialog>
+
+</game_dialogs>
+
+

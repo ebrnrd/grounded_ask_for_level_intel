@@ -1,0 +1,210 @@
+local notable_smarts = {
+    ["l01_escape"] = {
+        "esc_smart_terrain_2_12",
+        "esc_smart_terrain_7_11",
+        "esc_smart_terrain_5_9",
+        "esc_smart_terrain_5_7",
+        "esc_smart_terrain_5_2",
+    },
+    -- etc.
+}
+
+local comm_intel_behavior = {
+    ["trader"] = { paid_chance = 70, free_chance = 20, refuse_chance = 10 },
+    ["bandit"] = { paid_chance = 60, free_chance = 20, refuse_chance = 20 },
+    ["stalker"] = { paid_chance = 30, free_chance = 60, refuse_chance = 10 },
+}
+
+local rank_intel_accuracy = {
+    ["novice"] = 30,
+    ["trainee"] = 40,
+    ["experienced"] = 50,
+    ["professional"] = 60,
+    ["veteran"] = 70,
+    ["expert"] = 80,
+    ["master"] = 90,
+    ["legend"] = 100,
+}
+
+local current_intel = {}
+local intel_npcs = {}
+
+function add_my_dialog(character_id, dialog_list)
+    dialog_list:add("grounded_ask_for_intel")
+end
+
+function actor_on_update()
+    if db.actor:is_talking() then
+        local npc = db.actor:get_talking_npc()
+        if not npc then return end
+        init_npc_intel(npc)
+    end
+end
+
+function get_current_level_intel()
+    local sim = alife()
+    if not sim then return nil end
+    local level_name = sim:level_name(game_graph():vertex(sim:actor().m_game_vertex_id):level_id())
+    local smarts_for_level = notable_smarts[level_name]
+    if not smarts_for_level then return end
+
+    local results = {}
+    for _, smart_name in ipairs(smarts_for_level) do
+        local smart = SIMBOARD:get_smart_by_name(smart_name)
+        if smart then
+            local smart_data = SIMBOARD.smarts[smart.id]
+            results[smart_name] = {
+                population = smart_data.population,
+                faction    = smart.faction or smart.default_faction,
+                contested  = smart.faction_war_in_progress or false,
+            }
+        end
+    end
+    return results
+end
+
+function init_npc_intel(npc)
+
+    printf("Npc intel initialized")
+
+    --local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    if not npc then return end
+    local npc_id = npc:id()
+
+    -- already initialized for this NPC
+    if intel_npcs[npc_id] then return end
+
+    local comm = npc:character_community()
+    local behavior = "free"
+    local profile = comm_intel_behavior[comm]
+    if profile then -- default fallback
+        local roll = math.random(100)
+        if roll <= profile.refuse_chance then
+            behavior = "refuse"
+        elseif roll <= profile.refuse_chance + profile.paid_chance then
+            behavior = "paid"
+        else
+            behavior = "free"
+        end
+    end
+
+    local paid_accuracy_offset = 0
+    if behavior == "paid" then
+        paid_accuracy_offset = 30
+    end
+
+    local intel
+    local rank_name = ranks.get_obj_rank_name(npc) or "experienced"
+    local accuracy = (rank_intel_accuracy[rank_name] or 50) + paid_accuracy_offset
+    if behavior ~= "refuse" then
+        -- generate intel
+        intel = get_current_level_intel()
+        if intel then
+            local trimmed = {}
+            for smart_name, data in pairs(intel) do
+                if math.random(100) <= accuracy then
+                    trimmed[smart_name] = data
+                end
+            end
+            intel = trimmed
+        end   
+    end
+
+    intel_npcs[npc_id] = {
+        behavior = behavior,
+        intel    = intel,
+    }
+
+    printf("Added npc %s to intel_npcs. Behavior=%s, Accuracy=%s", npc_id, behavior, accuracy)
+
+end
+
+--================== DIALOGS ==================--
+--[[
+function generate_npc_intel(first_speaker, second_speaker)
+    local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    if not npc then return end
+    local npc_id = npc:id()
+
+    if not intel_npcs[npc_id] then -- NPC is not already in the table so add them; here is where i'll create all the variations of npcs that don't give all the intel, they ask money, ecc
+        intel_npcs[npc_id] = get_current_level_intel()
+    end
+end
+]]
+
+-- PRECONDITIONS
+
+function is_npc_paid_intel(first_speaker, second_speaker)
+    local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    if not npc then return false end
+    local entry = intel_npcs[npc:id()]
+    return entry and entry.behavior == "paid"
+end
+
+function is_npc_free_intel(first_speaker, second_speaker)
+    local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    if not npc then return false end
+    local entry = intel_npcs[npc:id()]
+    return entry and entry.behavior == "free"
+end
+
+function is_npc_refuse_intel(first_speaker, second_speaker)
+    local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    if not npc then return false end
+    local entry = intel_npcs[npc:id()]
+    return entry and entry.behavior == "refuse"
+end
+
+function can_actor_afford_intel(first_speaker, second_speaker)
+    local intel_cost = 500
+    return db.actor:money() >= intel_cost
+end
+
+
+-- ACTIONS
+
+function actor_pay_intel(first_speaker, second_speaker)
+    dialogs.relocate_money_from_actor(first_speaker, second_speaker, 500)
+end
+
+
+-- STRING BUILD
+
+function build_intel_string()
+    local npc = db.actor:get_talking_npc()
+    if not npc then return "" end
+    local npc_id = npc:id()
+
+    if not intel_npcs[npc_id] then return "" end
+
+    local intel = intel_npcs[npc_id].intel
+    
+    local intel_str = ""
+    
+    if (not intel) or is_empty(intel) then 
+        intel_str = "sorry i really don't know"
+        return intel_str
+    end
+    for smart, data in pairs(intel) do
+        --local smart_obj = SIMBOARD:get_smart_by_name(smart)
+        local smart_display_name = game.translate_string(smart) or smart
+        local faction_display_name = data.faction and game.translate_string("intel_" .. data.faction) or "unknown"
+
+        if data.population == 0 then
+            intel_str = intel_str .. "The " .. smart_display_name .. " is empty" .. "\\n"
+        else
+            intel_str = intel_str .. "The " .. smart_display_name .. " is controlled by " .. faction_display_name .. "\\n"
+        end
+    end
+    return intel_str
+end
+
+--================== CALLBACKS REGISTRATION ===================--
+
+function on_game_start()
+    RegisterScriptCallback("on_specific_character_dialog_list", add_my_dialog)
+    RegisterScriptCallback("actor_on_update", actor_on_update)
+    --RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
+    --RegisterScriptCallback("on_game_load", on_game_load)
+    --RegisterScriptCallback("on_option_change", on_option_change)
+end

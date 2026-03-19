@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="windows-1251" standalone="yes" ?>
+
+<string_table>
+
+    <string id="intel_stalker">
+		<text>loners</text>
+	</string>
+    <string id="intel_army">
+		<text>the military</text>
+	</string>
+	<string id="intel_bandit">
+		<text>bandits</text>
+	</string>
+	<string id="intel_csky">
+		<text>Clear Sky</text>
+	</string>
+	<string id="intel_dolg">
+		<text>Duty</text>
+	</string>
+	<string id="intel_ecolog">
+		<text>Ecologists</text>
+	</string>
+	<string id="intel_freedom">
+		<text>Freedom</text>
+	</string>
+	<string id="intel_killer">
+		<text>mercenaries</text>
+	</string>
+	<string id="intel_monolith">
+		<text>Monolith</text>
+	</string>
+	<string id="intel_monster">
+		<text>mutants</text>
+	</string>
+	<string id="intel_zombied">
+		<text>zombified stalkers</text>
+	</string>
+	<string id="intel_greh">
+		<text>Sin</text>
+	</string>
+	<string id="intel_isg">
+		<text>UNISG</text>
+	</string>
+	<string id="intel_renegade">
+		<text>renegades</text>
+	</string>
+
+</string_table>
