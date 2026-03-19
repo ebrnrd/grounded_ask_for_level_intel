@@ -1,3 +1,7 @@
+-- SETTINGS
+local intel_expire_time = aflimod_mcm.get_config("intel_expiration_time")
+
+
 local notable_smarts = {
     ["l01_escape"] = {
         "esc_smart_terrain_2_12",
@@ -33,12 +37,29 @@ function add_my_dialog(character_id, dialog_list)
     dialog_list:add("grounded_ask_for_intel")
 end
 
+
+local reset_timer = 0
 function actor_on_update()
     if db.actor:is_talking() then
         local npc = db.actor:get_talking_npc()
         if not npc then return end
         init_npc_intel(npc)
     end
+
+    local tg = time_global()
+
+    if tg < reset_timer or db.actor:is_talking() then return end
+    reset_timer = tg + 1000
+
+    local current_time = game.get_game_time()
+    for npc_id, data in pairs(intel_npcs) do
+        if data.generated_at then
+            local time_passed = current_time:diffSec(data.generated_at)
+            if time_passed > intel_expire_time then
+                intel_npcs[npc_id] = nil  -- force refresh
+            end
+        end
+    end 
 end
 
 function get_current_level_intel()
@@ -112,7 +133,8 @@ function init_npc_intel(npc)
 
     intel_npcs[npc_id] = {
         behavior = behavior,
-        intel    = intel,
+        intel = intel,
+        time = game.get_game_time()
     }
 
     printf("Added npc %s to intel_npcs. Behavior=%s, Accuracy=%s", npc_id, behavior, accuracy)
@@ -141,6 +163,13 @@ function is_npc_paid_intel(first_speaker, second_speaker)
     return entry and entry.behavior == "paid"
 end
 
+function has_actor_not_paid_for_intel(first_speaker, second_speaker)
+    local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    if not npc then return false end
+    local entry = intel_npcs[npc:id()]
+    return entry and not entry.paid_for_intel
+end
+
 function is_npc_free_intel(first_speaker, second_speaker)
     local npc = dialogs.who_is_npc(first_speaker, second_speaker)
     if not npc then return false end
@@ -160,11 +189,22 @@ function can_actor_afford_intel(first_speaker, second_speaker)
     return db.actor:money() >= intel_cost
 end
 
+function is_npc_free_intel_or_already_paid(first_speaker, second_speaker)
+    local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    if not npc then return false end
+    local entry = intel_npcs[npc:id()]
+    return entry and (entry.behavior == "free" or entry.paid_for_intel)
+end
 
 -- ACTIONS
 
 function actor_pay_intel(first_speaker, second_speaker)
-    dialogs.relocate_money_from_actor(first_speaker, second_speaker, 500)
+    local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    if not npc then return end
+    local npc_id = npc:id()
+    if not intel_npcs[npc_id] then return end
+    intel_npcs[npc_id].paid_for_intel = true
+    dialogs.relocate_money_from_actor(first_speaker, second_speaker, 500) -- CHANGE HARDCODED NUMBER
 end
 
 

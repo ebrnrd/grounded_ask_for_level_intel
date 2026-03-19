@@ -13,11 +13,12 @@
                 <next>3</next>
             </phrase>
             <phrase id="1">
-                <precondition>grounded_ask_for_level_intel.is_npc_free_intel</precondition>
+                <precondition>grounded_ask_for_level_intel.is_npc_free_intel_or_already_paid</precondition>
                 <script_text>grounded_ask_for_level_intel.build_intel_string</script_text>
             </phrase>
             <phrase id="2">
                 <precondition>grounded_ask_for_level_intel.is_npc_paid_intel</precondition>
+                <precondition>grounded_ask_for_level_intel.has_actor_not_paid_for_intel</precondition>
                 <text>i want money</text>
                 <next>20</next>
                 <next>21</next>
