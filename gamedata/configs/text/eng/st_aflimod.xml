@@ -52,6 +52,23 @@
 		<text>Sorry, I don't know much about what's going on out there.</text>
 	</string>
 
+	<string id="st_aflimod_actor_ask_intel">
+		<text>Hey, can you share some intel about the current situation around these parts?</text>
+	</string>
+
+	<string id="st_aflimod_refuse_intel">
+		<text>Piss off, I'm busy.</text>
+	</string>
+	<string id="st_aflimod_paid_intel">
+		<text>I have some intel, but it'll cost ya. %c[d_orange][%s]</text>
+	</string>
+	<string id="st_aflimod_actor_pay_intel">
+		<text>Alright, here's the money</text>
+	</string>
+	<string id="st_aflimod_actor_refuse_pay_intel">
+		<text>Nevermind</text>
+	</string>
+
 	<string id="st_aflimod_opener_1">
 		<text>Last I heard,</text>
 	</string>	

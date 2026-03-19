@@ -2,6 +2,8 @@
 local intel_expire_time
 local debug_mode
 
+-- CONSTANTS
+local PAID_INTEL_COST = 1000
 
 local notable_smarts = {
     ["l01_escape"] = {
@@ -247,7 +249,7 @@ function is_npc_refuse_intel(first_speaker, second_speaker)
 end
 
 function can_actor_afford_intel(first_speaker, second_speaker)
-    local intel_cost = 500
+    local intel_cost = PAID_INTEL_COST
     return db.actor:money() >= intel_cost
 end
 
@@ -266,7 +268,7 @@ function actor_pay_intel(first_speaker, second_speaker)
     local npc_id = npc:id()
     if not intel_npcs[npc_id] then return end
     intel_npcs[npc_id].paid_for_intel = true
-    dialogs.relocate_money_from_actor(first_speaker, second_speaker, 500) -- CHANGE HARDCODED NUMBER
+    dialogs.relocate_money_from_actor(first_speaker, second_speaker, PAID_INTEL_COST) -- CHANGE HARDCODED NUMBER
 end
 
 
@@ -311,6 +313,12 @@ local function capitalize_sentences(s)
     s = string.gsub(s, "%.%s+(%a)", function(c) return ". " .. string.upper(c) end)
     return s
 end
+
+function build_paid_intel_string()
+    local string = string.format(game.translate_string("st_aflimod_paid_intel"), PAID_INTEL_COST)
+    return string
+end
+
 
 function build_intel_string()
     local npc = db.actor:get_talking_npc()
