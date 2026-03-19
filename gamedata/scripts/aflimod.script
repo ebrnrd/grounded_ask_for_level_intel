@@ -1,5 +1,6 @@
 -- SETTINGS
-local intel_expire_time = aflimod_mcm.get_config("intel_expiration_time")
+local intel_expire_time
+local debug_mode
 
 
 local notable_smarts = {
@@ -14,9 +15,19 @@ local notable_smarts = {
 }
 
 local comm_intel_behavior = {
-    ["trader"] = { paid_chance = 70, free_chance = 20, refuse_chance = 10 },
-    ["bandit"] = { paid_chance = 60, free_chance = 20, refuse_chance = 20 },
-    ["stalker"] = { paid_chance = 30, free_chance = 60, refuse_chance = 10 },
+    ["trader"]   = { paid_chance = 70, free_chance = 20, refuse_chance = 10 },
+    ["bandit"]   = { paid_chance = 60, free_chance = 20, refuse_chance = 20 },
+    ["stalker"]  = { paid_chance = 30, free_chance = 60, refuse_chance = 10 },
+    ["army"]     = { paid_chance = 50, free_chance = 10, refuse_chance = 40 },
+    ["dolg"]     = { paid_chance = 40, free_chance = 20, refuse_chance = 40 },
+    ["freedom"]  = { paid_chance = 20, free_chance = 70, refuse_chance = 10 },
+    ["csky"]     = { paid_chance = 40, free_chance = 50, refuse_chance = 10 },
+    ["ecolog"]   = { paid_chance = 30, free_chance = 50, refuse_chance = 20 },
+    ["killer"]   = { paid_chance = 75, free_chance = 10, refuse_chance = 15 },
+    ["renegade"] = { paid_chance = 20, free_chance = 10, refuse_chance = 70 },
+    ["greh"]     = { paid_chance = 10, free_chance = 10, refuse_chance = 80 },
+    ["isg"]      = { paid_chance = 30, free_chance = 40, refuse_chance = 30 },
+    ["monolith"] = { paid_chance = 00, free_chance = 80, refuse_chance = 20 },
 }
 
 local rank_intel_accuracy = {
@@ -37,6 +48,29 @@ function add_my_dialog(character_id, dialog_list)
     dialog_list:add("grounded_ask_for_intel")
 end
 
+function on_game_load()
+    load_aflimod_settings()
+end
+
+function on_option_change()
+    load_aflimod_settings()
+end
+
+function actor_on_first_update()
+    load_aflimod_settings()
+end
+
+function load_aflimod_settings()
+    intel_expire_time = aflimod_mcm.get_config("intel_expiration_time")
+    debug_mode = aflimod_mcm.get_config("debug_mode")
+end
+
+local function print_dbg(...)
+    if not debug_mode then return end
+    local header = "[AFLIMOD]"
+    local msg = string.format(...)
+    printf(header .. " " .. msg)
+end
 
 local reset_timer = 0
 function actor_on_update()
@@ -47,7 +81,6 @@ function actor_on_update()
     end
 
     local tg = time_global()
-
     if tg < reset_timer or db.actor:is_talking() then return end
     reset_timer = tg + 1000
 
@@ -86,7 +119,7 @@ end
 
 function init_npc_intel(npc)
 
-    printf("Npc intel initialized")
+    print_dbg("Npc intel initialized")
 
     --local npc = dialogs.who_is_npc(first_speaker, second_speaker)
     if not npc then return end
@@ -137,7 +170,7 @@ function init_npc_intel(npc)
         time = game.get_game_time()
     }
 
-    printf("Added npc %s to intel_npcs. Behavior=%s, Accuracy=%s", npc_id, behavior, accuracy)
+    print_dbg("Added npc %s to intel_npcs. Behavior=%s, Accuracy=%s", npc_id, behavior, accuracy)
 
 end
 
@@ -155,6 +188,21 @@ end
 ]]
 
 -- PRECONDITIONS
+
+function is_actor_same_community(first_speaker, second_speaker)
+    local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    local npc_community = character_community(npc)
+    local actor_community = get_actor_true_community()
+    if not npc_community then
+        return false
+    end
+    if npc_community == "trader" or "monster" then return true end
+    if actor_community == npc_community then
+        return true
+    else
+        return false
+    end
+end
 
 function is_npc_paid_intel(first_speaker, second_speaker)
     local npc = dialogs.who_is_npc(first_speaker, second_speaker)
@@ -244,7 +292,7 @@ end
 function on_game_start()
     RegisterScriptCallback("on_specific_character_dialog_list", add_my_dialog)
     RegisterScriptCallback("actor_on_update", actor_on_update)
-    --RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
-    --RegisterScriptCallback("on_game_load", on_game_load)
-    --RegisterScriptCallback("on_option_change", on_option_change)
+    RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
+    RegisterScriptCallback("on_game_load", on_game_load)
+    RegisterScriptCallback("on_option_change", on_option_change)
 end
