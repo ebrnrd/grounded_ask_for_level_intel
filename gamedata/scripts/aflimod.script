@@ -10,6 +10,7 @@ local notable_smarts = {
         "esc_smart_terrain_5_9",
         "esc_smart_terrain_5_7",
         "esc_smart_terrain_5_2",
+        "esc_smart_terrain_3_16",
     },
     -- etc.
 }
@@ -95,6 +96,19 @@ function actor_on_update()
     end 
 end
 
+local function count_smart_squads(smart_id)
+    local count = 0
+    local squads = SIMBOARD.smarts[smart_id] and SIMBOARD.smarts[smart_id].squads
+    if not squads then return 0 end
+    for squad_id, _ in pairs(squads) do
+        local squad = alife_object(squad_id)
+        if squad and not is_squad_monster[squad.player_id] then
+            count = count + 1
+        end
+    end
+    return count
+end
+
 function get_current_level_intel()
     local sim = alife()
     if not sim then return nil end
@@ -108,7 +122,7 @@ function get_current_level_intel()
         if smart then
             local smart_data = SIMBOARD.smarts[smart.id]
             results[smart_name] = {
-                population = smart_data.population,
+                population = count_smart_squads(smart.id),
                 faction    = smart.faction or smart.default_faction,
                 contested  = smart.faction_war_in_progress or false,
             }
@@ -167,7 +181,7 @@ function init_npc_intel(npc)
     intel_npcs[npc_id] = {
         behavior = behavior,
         intel = intel,
-        time = game.get_game_time()
+        generated_at = game.get_game_time()
     }
 
     print_dbg("Added npc %s to intel_npcs. Behavior=%s, Accuracy=%s", npc_id, behavior, accuracy)
@@ -196,7 +210,7 @@ function is_actor_same_community(first_speaker, second_speaker)
     if not npc_community then
         return false
     end
-    if npc_community == "trader" or "monster" then return true end
+    if npc_community == "trader" or npc_community == "monster" then return true end
     if actor_community == npc_community then
         return true
     else
@@ -257,7 +271,7 @@ end
 
 
 -- STRING BUILD
-
+--[[
 function build_intel_string()
     local npc = db.actor:get_talking_npc()
     if not npc then return "" end
@@ -285,6 +299,85 @@ function build_intel_string()
         end
     end
     return intel_str
+end
+]]
+
+local function capitalize_first(s)
+    return string.upper(string.sub(s, 1, 1)) .. string.sub(s, 2)
+end
+
+local function capitalize_sentences(s)
+    s = capitalize_first(s)
+    s = string.gsub(s, "%.%s+(%a)", function(c) return ". " .. string.upper(c) end)
+    return s
+end
+
+function build_intel_string()
+    local npc = db.actor:get_talking_npc()
+    if not npc then return "" end
+    local entry = intel_npcs[npc:id()]
+    if not entry then return "" end
+
+    local intel = entry.intel
+    if not intel or is_empty(intel) then
+        return game.translate_string("st_aflimod_no_intel")
+    end
+
+    -- Step 1: group smarts by faction
+    local by_faction = {}  -- { faction -> { smart_name, ... } }
+    local empty_smarts = {}
+    local contested_smarts = {}
+
+    for smart_name, data in pairs(intel) do
+        local display = game.translate_string("st_afli_smarts_article") .. " " .. (game.translate_string(smart_name) or smart_name)
+        if data.population == 0 then
+            empty_smarts[#empty_smarts + 1] = display
+        elseif data.contested then
+            contested_smarts[#contested_smarts + 1] = display
+        else
+            local faction = data.faction
+            if faction then
+                if not by_faction[faction] then
+                    by_faction[faction] = {}
+                end
+                by_faction[faction][#by_faction[faction] + 1] = display
+            end
+        end
+    end
+
+    -- Step 2: helper to join a list naturally: "A, B and C"
+    local function join_list(t)
+        if #t == 1 then return t[1] end
+        local all_but_last = table.concat(t, ", ", 1, #t - 1)
+        return all_but_last .. " and " .. t[#t]
+    end
+
+    -- Step 3: build sentences
+    local parts = {}
+
+    for faction, smarts in pairs(by_faction) do
+        local faction_display = game.translate_string("intel_" .. faction) or faction
+        parts[#parts + 1] = faction_display .. " " .. game.translate_string("st_aflimod_faction_control_" .. math.random(2)) .. " " .. join_list(smarts)
+    end
+
+    for _, smart in ipairs(contested_smarts) do
+        parts[#parts + 1] = game.translate_string("st_aflimod_contested_1") .. " " .. smart
+    end
+
+    if #empty_smarts > 0 then
+        parts[#parts + 1] = join_list(empty_smarts) .. " " .. game.translate_string("st_aflimod_empty_" .. math.random(2))
+    end
+
+    if #parts == 0 then
+        return game.translate_string("st_aflimod_no_intel")
+    end
+
+    -- Step 4: join sentences
+    local result = game.translate_string("st_aflimod_opener_" .. math.random(5)) .. " " .. parts[1]
+    for i = 2, #parts do
+        result = result .. ". " .. parts[i]
+    end
+    return capitalize_sentences(result .. ".")
 end
 
 --================== CALLBACKS REGISTRATION ===================--

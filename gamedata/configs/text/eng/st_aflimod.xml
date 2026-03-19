@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="windows-1251" standalone="yes" ?>
 
 <string_table>
+    <string id="st_afli_smarts_article">
+		<text>the</text>
+	</string>
 
     <string id="intel_stalker">
 		<text>loners</text>
 	</string>
     <string id="intel_army">
-		<text>the military</text>
+		<text>militaries</text>
 	</string>
 	<string id="intel_bandit">
 		<text>bandits</text>
 	</string>
 	<string id="intel_csky">
-		<text>Clear Sky</text>
+		<text>stalkers from Clear Sky</text>
 	</string>
 	<string id="intel_dolg">
-		<text>Duty</text>
+		<text>members of Duty</text>
 	</string>
 	<string id="intel_ecolog">
 		<text>Ecologists</text>
 	</string>
 	<string id="intel_freedom">
-		<text>Freedom</text>
+		<text>Freedom members</text>
 	</string>
 	<string id="intel_killer">
 		<text>mercenaries</text>
 	</string>
 	<string id="intel_monolith">
-		<text>Monolith</text>
+		<text>Monoliths</text>
 	</string>
 	<string id="intel_monster">
-		<text>mutants</text>
+		<text>Mutants</text>
 	</string>
 	<string id="intel_zombied">
-		<text>zombified stalkers</text>
+		<text>Zombified Stalkers</text>
 	</string>
 	<string id="intel_greh">
 		<text>Sin</text>
@@ -43,6 +46,44 @@
 	</string>
 	<string id="intel_renegade">
 		<text>renegades</text>
+	</string>
+
+	<string id="st_aflimod_no_intel">
+		<text>Sorry, I don't know much about what's going on out there.</text>
+	</string>
+
+	<string id="st_aflimod_opener_1">
+		<text>Last I heard,</text>
+	</string>	
+	<string id="st_aflimod_opener_2">
+		<text>Word is</text>
+	</string>
+	<string id="st_aflimod_opener_3">
+		<text>From what I've seen,</text>
+	</string>
+	<string id="st_aflimod_opener_4">
+		<text>Rumour has it</text>
+	</string>
+	<string id="st_aflimod_opener_5">
+		<text>I think</text>
+	</string>
+
+	<string id="st_aflimod_faction_control_1">
+		<text>are holding</text>
+	</string>
+	<string id="st_aflimod_faction_control_2">
+		<text>are controlling</text>
+	</string>
+
+	<string id="st_aflimod_empty_1">
+		<text>is looking quiet, probably empty</text>
+	</string>
+	<string id="st_aflimod_empty_2">
+		<text>is quiet, maybe no one there for now</text>
+	</string>
+
+	<string id="st_aflimod_contested_1">
+		<text>there's fighting over at</text>
 	</string>
 
 </string_table>
