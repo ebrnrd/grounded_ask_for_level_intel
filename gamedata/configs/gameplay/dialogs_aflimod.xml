@@ -19,7 +19,7 @@
             <phrase id="2">
                 <precondition>aflimod.is_npc_paid_intel</precondition>
                 <precondition>aflimod.has_actor_not_paid_for_intel</precondition>
-                <script_text>aflimod.build_paid_intel_string</script_text>
+                <text>st_aflimod_paid_intel</text>
                 <next>20</next>
                 <next>21</next>
             </phrase>
@@ -31,7 +31,7 @@
             <phrase id="20">
                 <precondition>aflimod.can_actor_afford_intel</precondition>
                 <action>aflimod.actor_pay_intel</action>
-                <text>st_aflimod_actor_pay_intel</text>
+                <script_text>aflimod.build_pay_intel_string</script_text>
                 <next>100</next>
             </phrase>
 
