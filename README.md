@@ -1,4 +1,4 @@
-# A.F.L.I. — Afield Intelligence
+# Asf For Level Intel
 
 Adds a dialogue option to ask NPCs for intel about the current map. NPCs report on faction presence and activity at tracked smart terrains based on live ALife simulation data. What they know — and whether they'll share it — depends on their faction, rank, and disposition.
 
