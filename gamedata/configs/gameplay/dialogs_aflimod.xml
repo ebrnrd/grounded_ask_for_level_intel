@@ -25,7 +25,7 @@
             </phrase>
             <phrase id="3">
                 <precondition>aflimod.is_npc_refuse_intel</precondition>
-                <text>st_aflimod_refuse_intel</text>
+                <script_text>aflimod.build_refuse_intel_string</script_text>
             </phrase>
             <!-- Payment branch -->
             <phrase id="20">

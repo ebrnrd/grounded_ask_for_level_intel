@@ -4,7 +4,6 @@
     <string id="st_afli_smarts_article">
 		<text>the</text>
 	</string>
-
 	<string id="intel_actor_faction">
 		<text>we</text>
 	</string>
@@ -25,7 +24,7 @@
 		<text>Duty soldiers</text>
 	</string>
 	<string id="intel_ecolog">
-		<text>ecologists</text>
+		<text>Ecologists</text>
 	</string>
 	<string id="intel_freedom">
 		<text>Freedom fighters</text>
@@ -40,7 +39,7 @@
 		<text>mutants</text>
 	</string>
 	<string id="intel_zombied">
-		<text>zombified Stalkers</text>
+		<text>zombified stalkers</text>
 	</string>
 	<string id="intel_greh">
 		<text>Sin cultists</text>
@@ -57,12 +56,52 @@
 	</string>
 
 	<string id="st_aflimod_actor_ask_intel">
-		<text>Hey, can you share some intel about the current situation around these parts?</text>
+		<text>Can you share some intel about the current situation around these parts?</text>
 	</string>
 
 	<string id="st_aflimod_refuse_intel">
-		<text>Piss off, I'm busy.</text>
+		<text>Can't help you with that, sorry.</text>
 	</string>
+	<string id="st_aflimod_refuse_intel_stalker">
+		<text>Ask someone else, I've got enough to worry about.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_trader">
+		<text>I'm running a business here, not an information service.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_bandit">
+		<text>Get lost before I change my mind about letting you walk away.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_army">
+		<text>That's classified. Move along.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_dolg">
+		<text>I don't share operational intel with outsiders. Move on.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_freedom">
+		<text>Not really my problem what you know or don't know.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_csky">
+		<text>We don't share field data with people we don't know. Sorry.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_ecolog">
+		<text>I'm in the middle of something. Please don't disturb me.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_killer">
+		<text>Information costs more than you can afford. Walk away.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_renegade">
+		<text>You're lucky I'm even talking to you. Don't push it.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_greh">
+		<text>The Zone's secrets are not yours to know. Leave.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_isg">
+		<text>Operational security. I'm sure you understand.</text>
+	</string>
+	<string id="st_aflimod_refuse_intel_monolith">
+		<text>...</text>
+	</string>
+
 	<string id="st_aflimod_paid_intel">
 		<text>I have some intel, but it'll cost ya.</text>
 	</string>
@@ -73,67 +112,419 @@
 		<text>Nevermind</text>
 	</string>
 
-	<string id="st_aflimod_opener_1">
-		<text>Last I heard,</text>
-	</string>	
-	<string id="st_aflimod_opener_2">
-		<text>Word is</text>
+	<string id="st_aflimod_and">
+		<text>and</text>
 	</string>
-	<string id="st_aflimod_opener_3">
-		<text>From what I've heard,</text>
-	</string>
-	<string id="st_aflimod_opener_4">
-		<text>Rumour has it that</text>
-	</string>
-	<string id="st_aflimod_opener_5">
-		<text>I think</text>
+	<string id="st_aflimod_article">
+		<text>the</text>
 	</string>
 
-	<string id="st_aflimod_faction_control_1">
-		<text>are holding</text>
+	<!-- FACTION CONTROL LOW -->
+	<string id="st_aflimod_line_faction_control_low_1">
+		<text>I'm not entirely sure but I heard that %s are controlling %s. I could be wrong though.</text>
 	</string>
-	<string id="st_aflimod_faction_control_2">
-		<text>are controlling</text>
+	<string id="st_aflimod_line_faction_control_low_2">
+		<text>If I'm not mistaken %s should've taken over %s. But don't quote me on that.</text>
 	</string>
-	<string id="st_aflimod_faction_control_3">
-		<text>are currently occupying</text>
+	<string id="st_aflimod_line_faction_control_low_3">
+		<text>Not long ago I overheard someone mention that %s are holding %s. Maybe.</text>
 	</string>
-
-	<string id="st_aflimod_empty_1">
-		<text>was quiet last I heard, probably still empty</text>
+	<string id="st_aflimod_line_faction_control_low_4">
+		<text>I think %s are controlling %s, but I really couldn't say for certain.</text>
 	</string>
-	<string id="st_aflimod_empty_2">
-		<text>seemed quiet recently, at least that's what I've heard</text>
-	</string>
-	<string id="st_aflimod_empty_3">
-		<text>was empty last time someone mentioned it, but who knows now</text>
-	</string>
-	<string id="st_aflimod_empty_4">
-		<text>was quiet last I heard, though that could've changed</text>
-	</string>
-	<string id="st_aflimod_empty_5">
-		<text>was empty when I heard about it, could've changed though</text>
+	<string id="st_aflimod_line_faction_control_low_5">
+		<text>Last time I talk to someone they said that %s are currently around %s, but don't take my word for it.</text>
 	</string>
 
-	<string id="st_aflimod_empty_plural_1">
-		<text>were all quiet last I heard, probably still empty</text>
+	<!-- FACTION CONTROL MID -->
+	<string id="st_aflimod_line_faction_control_mid_1">
+		<text>Last I heard, %s were holding %s.</text>
 	</string>
-	<string id="st_aflimod_empty_plural_2">
-		<text>seemed all empty, at least that's what I've heard</text>
+	<string id="st_aflimod_line_faction_control_mid_2">
+		<text>Word is %s have taken over %s, at least that's what people are saying.</text>
 	</string>
-	<string id="st_aflimod_empty_plural_3">
-		<text>were all empty last time someone mentioned them, but who knows now</text>
+	<string id="st_aflimod_line_faction_control_mid_3">
+		<text>Someone told me %s claimed %s a while back.</text>
 	</string>
-	<string id="st_aflimod_empty_plural_4">
-		<text>were quiet last time someone passed by, though that could've changed</text>
+	<string id="st_aflimod_line_faction_control_mid_4">
+		<text>From what I've heard, %s are dug in at %s.</text>
 	</string>
-	<string id="st_aflimod_empty_plural_5">
-		<text>were empty when a friend of mine recently passed through, could've changed though</text>
+	<string id="st_aflimod_line_faction_control_mid_5">
+		<text>%s were controlling %s last time it came up, probably still the case.</text>
 	</string>
 
+	<!-- FACTION CONTROL HIGH -->
+	<string id="st_aflimod_line_faction_control_high_1">
+		<text>%s are controlling %s.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_high_2">
+		<text>%s have taken over %s.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_high_3">
+		<text>%s are holding %s.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_high_4">
+		<text>%s are dug in at %s.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_high_5">
+		<text>%s have control of %s.</text>
+	</string>
 
-	<string id="st_aflimod_contested_1">
-		<text>there's fighting over at</text>
+	<!-- CONTESTED LOW -->
+	<string id="st_aflimod_line_contested_low_1">
+		<text>I think there might be some trouble at %s, not sure.</text>
+	</string>
+	<string id="st_aflimod_line_contested_low_2">
+		<text>Someone mentioned something going on at %s, could be a fight.</text>
+	</string>
+	<string id="st_aflimod_line_contested_low_3">
+		<text>There might be fighting over %s, but I couldn't say for sure.</text>
+	</string>
+	<string id="st_aflimod_line_contested_low_4">
+		<text>I vaguely heard something about trouble at %s.</text>
+	</string>
+	<string id="st_aflimod_line_contested_low_5">
+		<text>Could be something going on at %s, hard to say.</text>
+	</string>
+
+	<!-- CONTESTED MID -->
+	<string id="st_aflimod_line_contested_mid_1">
+		<text>Last I heard there was fighting over %s.</text>
+	</string>
+	<string id="st_aflimod_line_contested_mid_2">
+		<text>Word is %s is contested, at least it was a while ago.</text>
+	</string>
+	<string id="st_aflimod_line_contested_mid_3">
+		<text>Someone mentioned a fight breaking out over %s recently.</text>
+	</string>
+	<string id="st_aflimod_line_contested_mid_4">
+		<text>From what I heard there's been some shooting over at %s.</text>
+	</string>
+	<string id="st_aflimod_line_contested_mid_5">
+		<text>There was some action at %s last time it came up.</text>
+	</string>
+
+	<!-- CONTESTED HIGH -->
+	<string id="st_aflimod_line_contested_high_1">
+		<text>There is fighting over %s.</text>
+	</string>
+	<string id="st_aflimod_line_contested_high_2">
+		<text>%s is a warzone right now.</text>
+	</string>
+	<string id="st_aflimod_line_contested_high_3">
+		<text>There's a firefight going on at %s.</text>
+	</string>
+	<string id="st_aflimod_line_contested_high_4">
+		<text>Something's going on at %s, doesn't sound good.</text>
+	</string>
+	<string id="st_aflimod_line_contested_high_5">
+		<text>There's been shooting over at %s.</text>
+	</string>
+
+	<!-- CONTESTED PLURAL LOW -->
+	<string id="st_aflimod_line_contested_plural_low_1">
+		<text>I think there might be trouble at %s, not entirely sure.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_low_2">
+		<text>Someone mentioned something going on around %s, could be fights.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_low_3">
+		<text>There might be fighting over %s, but I couldn't say for certain.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_low_4">
+		<text>I vaguely heard something about trouble at %s.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_low_5">
+		<text>Could be something going on at %s, hard to say.</text>
+	</string>
+
+	<!-- CONTESTED PLURAL MID -->
+	<string id="st_aflimod_line_contested_plural_mid_1">
+		<text>Last I heard there was fighting going on around %s.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_mid_2">
+		<text>Word is %s are all contested, at least that's what I heard.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_mid_3">
+		<text>Someone mentioned fights breaking out over %s recently.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_mid_4">
+		<text>From what I heard there's been shooting around %s.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_mid_5">
+		<text>There was action at %s last time it came up.</text>
+	</string>
+
+	<!-- CONTESTED PLURAL HIGH -->
+	<string id="st_aflimod_line_contested_plural_high_1">
+		<text>%s are all contested right now.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_high_2">
+		<text>There are firefights going on at %s.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_high_3">
+		<text>%s have all seen some shooting lately.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_high_4">
+		<text>Something's going on at %s, none of it sounds peaceful.</text>
+	</string>
+	<string id="st_aflimod_line_contested_plural_high_5">
+		<text>There are fights reported at %s.</text>
+	</string>
+
+	<!-- EMPTY LOW -->
+	<string id="st_aflimod_line_empty_low_1">
+		<text>%s might be empty, but I'm not sure, it's been a while.</text>
+	</string>
+	<string id="st_aflimod_line_empty_low_2">
+		<text>I think %s was quiet last time someone mentioned it, maybe still is.</text>
+	</string>
+	<string id="st_aflimod_line_empty_low_3">
+		<text>I'm not entirely sure but I think that %s is empty.</text>
+	</string>
+	<string id="st_aflimod_line_empty_low_4">
+		<text>%s might be deserted, from what I vaguely heard.</text>
+	</string>
+	<string id="st_aflimod_line_empty_low_5">
+		<text>I think %s was empty, but things change fast out here.</text>
+	</string>
+
+	<!-- EMPTY MID -->
+	<string id="st_aflimod_line_empty_mid_1">
+		<text>%s looked empty last I heard, probably still is.</text>
+	</string>
+	<string id="st_aflimod_line_empty_mid_2">
+		<text>From what I know %s was quiet, maybe no one there.</text>
+	</string>
+	<string id="st_aflimod_line_empty_mid_3">
+		<text>%s was deserted when someone passed through recently.</text>
+	</string>
+	<string id="st_aflimod_line_empty_mid_4">
+		<text>Haven't heard of anyone holding %s lately.</text>
+	</string>
+	<string id="st_aflimod_line_empty_mid_5">
+		<text>%s was quiet last time it came up, could've changed though.</text>
+	</string>
+
+	<!-- EMPTY HIGH -->
+	<string id="st_aflimod_line_empty_high_1">
+		<text>%s was empty last time I checked.</text>
+	</string>
+	<string id="st_aflimod_line_empty_high_2">
+		<text>%s was dead silent when I passed through.</text>
+	</string>
+	<string id="st_aflimod_line_empty_high_3">
+		<text>%s was clear last time I was there.</text>
+	</string>
+	<string id="st_aflimod_line_empty_high_4">
+		<text>Nobody's been holding %s, it's been empty.</text>
+	</string>
+	<string id="st_aflimod_line_empty_high_5">
+		<text>%s was completely deserted last I saw.</text>
+	</string>
+
+	<!-- EMPTY PLURAL LOW -->
+	<string id="st_aflimod_line_empty_plural_low_1">
+		<text>%s might all be empty, but I'm not really sure.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_low_2">
+		<text>I think %s were quiet last time someone mentioned them, maybe still are.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_low_3">
+		<text>Mmmh, Let me think. %s are probably empty, but don't take my word for it.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_low_4">
+		<text>%s might all be deserted, from what I vaguely heard.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_low_5">
+		<text>I think %s were all empty, but things change fast out here.</text>
+	</string>
+
+	<!-- EMPTY PLURAL MID -->
+	<string id="st_aflimod_line_empty_plural_mid_1">
+		<text>%s all looked empty last I heard, probably still are.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_mid_2">
+		<text>From what I know %s were all quiet, maybe no one around.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_mid_3">
+		<text>%s were all deserted last time someone mentioned them.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_mid_4">
+		<text>Haven't heard of anyone holding %s lately.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_mid_5">
+		<text>%s were all quiet last time it came up, could've changed though.</text>
+	</string>
+
+	<!-- EMPTY PLURAL HIGH -->
+	<string id="st_aflimod_line_empty_plural_high_1">
+		<text>%s were all empty last time I checked.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_high_2">
+		<text>%s were dead silent when someone passed through.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_high_3">
+		<text>%s were all clear last time someone was there.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_high_4">
+		<text>Nobody's been holding %s, they've all been empty.</text>
+	</string>
+	<string id="st_aflimod_line_empty_plural_high_5">
+		<text>%s were all completely deserted last I heard.</text>
+	</string>
+
+	<!-- DYNAMIC STALKER LOW -->
+	<string id="st_aflimod_line_dynamic_stalker_low_1">
+		<text>I think there might be %s moving around %s, not sure.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_low_2">
+		<text>Could be %s somewhere around %s, but I really couldn't say.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_low_3">
+		<text>Someone vaguely mentioned %s around %s, take that with a grain of salt.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_low_4">
+		<text>I might have heard something about %s near %s, but I'm not certain.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_low_5">
+		<text>There might be %s around %s from what little I've heard.</text>
+	</string>
+
+	<!-- DYNAMIC STALKER MID -->
+	<string id="st_aflimod_line_dynamic_stalker_mid_1">
+		<text>Word is %s have been spotted around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_mid_2">
+		<text>Someone reported seeing %s moving around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_mid_3">
+		<text>From what I heard %s are moving through %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_mid_4">
+		<text>My buddy mentioned seeing %s around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_mid_5">
+		<text>%s were reported in the area of %s not long ago.</text>
+	</string>
+
+	<!-- DYNAMIC STALKER HIGH -->
+	<string id="st_aflimod_line_dynamic_stalker_high_1">
+		<text>%s have been spotted around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_high_2">
+		<text>There were %s seen around %s not long ago.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_high_3">
+		<text>%s are moving through %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_high_4">
+		<text>%s have been reported moving through %s recently.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_stalker_high_5">
+		<text>There is %s activity going on around %s.</text>
+	</string>
+
+	<!-- DYNAMIC OWN LOW -->
+	<string id="st_aflimod_line_dynamic_own_low_1">
+		<text>I think some of ours might be around %s, not certain.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_low_2">
+		<text>There might be some of our people near %s, hard to say.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_low_3">
+		<text>Could be some of ours moving around %s, from what I vaguely heard.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_low_4">
+		<text>Someone mentioned our people near %s, but I'm not sure.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_low_5">
+		<text>I might have heard something about our guys around %s.</text>
+	</string>
+
+	<!-- DYNAMIC OWN MID -->
+	<string id="st_aflimod_line_dynamic_own_mid_1">
+		<text>Heard some of ours were spotted around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_mid_2">
+		<text>Word is some of our people are moving through %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_mid_3">
+		<text>Someone mentioned our guys were seen around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_mid_4">
+		<text>From what I heard some of ours have been around %s lately.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_mid_5">
+		<text>There might be some of ours moving around %s, last I heard.</text>
+	</string>
+
+	<!-- DYNAMIC OWN HIGH -->
+	<string id="st_aflimod_line_dynamic_own_high_1">
+		<text>Some of our people were seen around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_high_2">
+		<text>Our guys have been moving through %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_high_3">
+		<text>Some of ours were spotted around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_high_4">
+		<text>Word is some of our people are around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_own_high_5">
+		<text>Our people have been reported moving through %s.</text>
+	</string>
+
+	<!-- DYNAMIC MONSTER LOW -->
+	<string id="st_aflimod_line_dynamic_monster_low_1">
+		<text>I think there might be mutants around %s, not sure.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_low_2">
+		<text>Could be mutants somewhere near %s, hard to say.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_low_3">
+		<text>Someone vaguely mentioned mutants around %s, take that with a grain of salt.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_low_4">
+		<text>I might have heard something about mutants near %s, not certain.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_low_5">
+		<text>There might be mutants around %s from what little I've heard.</text>
+	</string>
+
+	<!-- DYNAMIC MONSTER MID -->
+	<string id="st_aflimod_line_dynamic_monster_mid_1">
+		<text>Someone spotted mutants around %s not long ago.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_mid_2">
+		<text>Word is there's been mutant activity around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_mid_3">
+		<text>From what I heard there are mutants moving around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_mid_4">
+		<text>One guy told me there are mutants around %s, probably still there.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_mid_5">
+		<text>There have been mutant sightings near %s from what people are saying.</text>
+	</string>
+
+	<!-- DYNAMIC MONSTER HIGH -->
+	<string id="st_aflimod_line_dynamic_monster_high_1">
+		<text>Mutant activity has been reported around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_high_2">
+		<text>There are mutants moving around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_high_3">
+		<text>Mutants were spotted near %s recently.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_high_4">
+		<text>Watch out for mutants around %s.</text>
+	</string>
+	<string id="st_aflimod_line_dynamic_monster_high_5">
+		<text>There have been mutant sightings around %s.</text>
 	</string>
 
 </string_table>

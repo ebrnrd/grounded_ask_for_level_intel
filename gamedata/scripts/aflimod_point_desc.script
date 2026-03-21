@@ -1,0 +1,80 @@
+local function get_object_levelname(obj)
+	if not (obj) then 
+		return "nil"
+	end 
+	
+	local gvid = obj.m_game_vertex_id or obj.game_vertex_id and obj:game_vertex_id()
+	if not (gvid) then 
+		return "nil"
+	end
+	
+	local gg = game_graph()
+	if (gg:valid_vertex_id(gvid)) then
+		cvertex = gg:vertex(gvid)
+		return alife():level_name(cvertex:level_id())
+	end
+			
+	return "nil"
+end
+
+
+function get_point_description_no_level(obj)
+    local level_name = get_object_levelname(obj)
+    if not level_name then return "" end
+
+    local point = type(obj.position) == "function" and obj:position() or obj.position
+    if not point then return "" end
+
+    local points = dynamic_news_helper.level_points[level_name]
+    if not points then return "" end
+
+    local near_id = nil
+    local near_dist = nil
+    local near_point = nil
+    for i = 1, #points do
+        local value = points[i]
+        local pos = vector():set(value[1], value[2], value[3])
+        local dist = pos:distance_to_sqr(point)
+        if near_dist == nil or dist < near_dist then
+            near_dist = dist
+            near_id = i
+            near_point = pos
+        end
+        if near_dist <= 30 then break end
+    end
+
+    if not near_point then return "" end
+
+    local m_str  = game.translate_string("st_dyn_" .. level_name .. "_daleko_" .. near_id)
+    local m_str0 = game.translate_string("st_dyn_" .. level_name .. "_blizko_" .. near_id)
+
+    if near_dist <= 20 then
+        return m_str0
+    elseif near_dist < 50 then
+        return strformat("%s %s", game.translate_string("st_dyn_news_near"), m_str)
+    elseif near_dist < 100 then
+        return strformat("%s %s", game.translate_string("st_dyn_news_close"), m_str)
+    end
+
+    local dx = point.x - near_point.x
+    local dy = point.z - near_point.z
+    local radians = math.atan2(dy, dx)
+    local angle = 0
+    if radians then
+        angle = radians * 57
+        if angle < 0 then angle = angle + 360 end
+        if angle > 360 then angle = angle - 360 end
+    end
+
+    if     angle >= 330 or angle <= 30  then return strformat("%s %s", game.translate_string("st_dyn_news_east"),       m_str)
+    elseif angle > 30  and angle <= 60  then return strformat("%s %s", game.translate_string("st_dyn_news_north_east"), m_str)
+    elseif angle > 60  and angle <= 120 then return strformat("%s %s", game.translate_string("st_dyn_news_north"),      m_str)
+    elseif angle > 120 and angle <= 150 then return strformat("%s %s", game.translate_string("st_dyn_news_north_west"), m_str)
+    elseif angle > 150 and angle <= 210 then return strformat("%s %s", game.translate_string("st_dyn_news_west"),       m_str)
+    elseif angle > 210 and angle <= 240 then return strformat("%s %s", game.translate_string("st_dyn_news_south_west"), m_str)
+    elseif angle > 240 and angle <= 300 then return strformat("%s %s", game.translate_string("st_dyn_news_south"),      m_str)
+    elseif angle > 300 and angle <= 330 then return strformat("%s %s", game.translate_string("st_dyn_news_south_east"), m_str)
+    end
+
+    return strformat("%s %s", game.translate_string("st_dyn_news_close"), m_str)
+end
