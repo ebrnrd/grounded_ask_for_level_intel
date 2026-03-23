@@ -5,6 +5,8 @@
     <dialog id="grounded_ask_for_intel">
 		<precondition>dialogs_axr_companion.is_not_actor_companion</precondition>
         <precondition>aflimod.is_actor_same_community</precondition>
+        <precondition>aflimod.is_not_blacklisted_level</precondition>
+        <precondition>aflimod.is_squad_commander_or_story_npc</precondition>
         <phrase_list>
             <phrase id="0">
                 <text>st_aflimod_actor_ask_intel</text>

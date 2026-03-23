@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+
+	<string id="ui_mcm_aflimod_title">
+		<text>Ask For Level Intel Settings</text>
+	</string>
+
+	<string id="ui_mcm_menu_aflimod">
+		<text>Ask For Level Intel</text>
+	</string>
+
+	<string id="ui_mcm_aflimod_intel_expiration_time">
+		<text>Intel Expiration Time</text>
+	</string>
+	<string id="ui_mcm_aflimod_intel_expiration_time_desc">
+		<text>In-game seconds until an Intel becomes obsolete and you can ask that NPC again for a new Intel.</text>
+	</string>
+	
+	<string id="ui_mcm_aflimod_debug_mode">
+		<text>Debug</text>
+	</string>
+
+</string_table>

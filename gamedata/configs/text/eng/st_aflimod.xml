@@ -5,7 +5,7 @@
 		<text>the</text>
 	</string>
 	<string id="intel_actor_faction">
-		<text>we</text>
+		<text>our people</text>
 	</string>
 
     <string id="intel_stalker">
@@ -51,13 +51,17 @@
 		<text>renegades</text>
 	</string>
 
+	<string id="st_aflimod_actor_ask_intel">
+		<text>Can you share some intel about the current situation around these parts?</text>
+	</string>
+
 	<string id="st_aflimod_no_intel">
 		<text>Sorry, I don't know much about what's going on out there.</text>
 	</string>
 
-	<string id="st_aflimod_actor_ask_intel">
-		<text>Can you share some intel about the current situation around these parts?</text>
-	</string>
+	<string id="st_aflimod_ask_squad_leader">
+		<text>I don't keep track of that stuff, ask our squad leader.</text>
+	</string>	
 
 	<string id="st_aflimod_refuse_intel">
 		<text>Can't help you with that, sorry.</text>
@@ -119,55 +123,108 @@
 		<text>the</text>
 	</string>
 
+	<!-- low, mid and high refer to the confidence level of the NPC -->
+
 	<!-- FACTION CONTROL LOW -->
 	<string id="st_aflimod_line_faction_control_low_1">
-		<text>I'm not entirely sure but I heard that %s are controlling %s. I could be wrong though.</text>
+		<text>I'm not entirely sure but I heard that %s is controlled by %s. I could be wrong though.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_low_2">
-		<text>If I'm not mistaken %s should've taken over %s. But don't quote me on that.</text>
+		<text>If I'm not mistaken %s should've been taken over by %s. But don't quote me on that.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_low_3">
-		<text>Not long ago I overheard someone mention that %s are holding %s. Maybe.</text>
+		<text>Not long ago I overheard someone mention that %s is being held by %s, probably.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_low_4">
-		<text>I think %s are controlling %s, but I really couldn't say for certain.</text>
+		<text>I think %s is controlled by %s, but I really couldn't say for certain.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_low_5">
-		<text>Last time I talk to someone they said that %s are currently around %s, but don't take my word for it.</text>
+		<text>Last time I talked to someone they said that %s has been taken over by %s, but don't take my word for it.</text>
 	</string>
 
 	<!-- FACTION CONTROL MID -->
 	<string id="st_aflimod_line_faction_control_mid_1">
-		<text>Last I heard, %s were holding %s.</text>
+		<text>Last I heard, %s was being held by %s.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_mid_2">
-		<text>Word is %s have taken over %s, at least that's what people are saying.</text>
+		<text>Word is %s has been taken over by %s, at least that's what people are saying.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_mid_3">
-		<text>Someone told me %s claimed %s a while back.</text>
+		<text>Someone told me %s was claimed by %s a while back.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_mid_4">
-		<text>From what I've heard, %s are dug in at %s.</text>
+		<text>From what I've heard, %s has been claimed by %s.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_mid_5">
-		<text>%s were controlling %s last time it came up, probably still the case.</text>
+		<text>Last time it came up %s was controlled by %s, probably still the case.</text>
 	</string>
 
 	<!-- FACTION CONTROL HIGH -->
 	<string id="st_aflimod_line_faction_control_high_1">
-		<text>%s are controlling %s.</text>
+		<text>%s is controlled by %s.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_high_2">
-		<text>%s have taken over %s.</text>
+		<text>%s has been taken over by %s.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_high_3">
-		<text>%s are holding %s.</text>
+		<text>%s is held by %s.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_high_4">
-		<text>%s are dug in at %s.</text>
+		<text>%s has %s dug in.</text>
 	</string>
 	<string id="st_aflimod_line_faction_control_high_5">
-		<text>%s have control of %s.</text>
+		<text>%s have %s settled in.</text>
+	</string>
+
+	<!-- FACTION CONTROL PLURAL LOW -->
+	<string id="st_aflimod_line_faction_control_plural_low_1">
+		<text>I'm not entirely sure but I heard that %s are controlled by %s. I could be wrong though.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_low_2">
+		<text>If I'm not mistaken %s should've been taken over by %s. But don't quote me on that.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_low_3">
+		<text>Not long ago I overheard someone mention that %s are being held by %s. Maybe.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_low_4">
+		<text>I think %s are controlled by %s, but I really couldn't say for certain.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_low_5">
+		<text>Last time I talked to someone they said that %s had been taken over by %s, but don't take my word for it.</text>
+	</string>
+
+	<!-- FACTION CONTROL PLURAL MID -->
+	<string id="st_aflimod_line_faction_control_plural_mid_1">
+		<text>Last I heard, %s were being held by %s.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_mid_2">
+		<text>Word is %s have been taken over by %s, at least that's what people are saying.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_mid_3">
+		<text>Someone told me %s were claimed by %s a while back.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_mid_4">
+		<text>From what I've heard, %s have %s dug in.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_mid_5">
+		<text>%s had %s settled in last time it came up, probably still the case.</text>
+	</string>
+
+	<!-- FACTION CONTROL PLURAL HIGH -->
+	<string id="st_aflimod_line_faction_control_plural_high_1">
+		<text>%s are controlled by %s.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_high_2">
+		<text>%s have been taken over by %s.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_high_3">
+		<text>%s are held by %s.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_high_4">
+		<text>%s have %s dug in.</text>
+	</string>
+	<string id="st_aflimod_line_faction_control_plural_high_5">
+		<text>%s have %s settled in.</text>
 	</string>
 
 	<!-- CONTESTED LOW -->
@@ -308,19 +365,19 @@
 
 	<!-- EMPTY HIGH -->
 	<string id="st_aflimod_line_empty_high_1">
-		<text>%s was empty last time I checked.</text>
+		<text>%s is empty.</text>
 	</string>
 	<string id="st_aflimod_line_empty_high_2">
-		<text>%s was dead silent when I passed through.</text>
+		<text>%s is dead silent.</text>
 	</string>
 	<string id="st_aflimod_line_empty_high_3">
-		<text>%s was clear last time I was there.</text>
+		<text>%s is clear, nobody's there.</text>
 	</string>
 	<string id="st_aflimod_line_empty_high_4">
 		<text>Nobody's been holding %s, it's been empty.</text>
 	</string>
 	<string id="st_aflimod_line_empty_high_5">
-		<text>%s was completely deserted last I saw.</text>
+		<text>%s is completely deserted.</text>
 	</string>
 
 	<!-- EMPTY PLURAL LOW -->
@@ -359,67 +416,67 @@
 
 	<!-- EMPTY PLURAL HIGH -->
 	<string id="st_aflimod_line_empty_plural_high_1">
-		<text>%s were all empty last time I checked.</text>
+		<text>%s are all empty.</text>
 	</string>
 	<string id="st_aflimod_line_empty_plural_high_2">
-		<text>%s were dead silent when someone passed through.</text>
+		<text>%s are dead silent.</text>
 	</string>
 	<string id="st_aflimod_line_empty_plural_high_3">
-		<text>%s were all clear last time someone was there.</text>
+		<text>%s are all clear.</text>
 	</string>
 	<string id="st_aflimod_line_empty_plural_high_4">
-		<text>Nobody's been holding %s, they've all been empty.</text>
+		<text>Nobody's holding %s.</text>
 	</string>
 	<string id="st_aflimod_line_empty_plural_high_5">
-		<text>%s were all completely deserted last I heard.</text>
+		<text>%s are all completely deserted.</text>
 	</string>
 
 	<!-- DYNAMIC STALKER LOW -->
 	<string id="st_aflimod_line_dynamic_stalker_low_1">
-		<text>I think there might be %s moving around %s, not sure.</text>
+		<text>I think there might be someone around %s, not sure, could be %s.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_low_2">
-		<text>Could be %s somewhere around %s, but I really couldn't say.</text>
+		<text>Could be someone around %s, might be %s but I really couldn't say.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_low_3">
-		<text>Someone vaguely mentioned %s around %s, take that with a grain of salt.</text>
+		<text>Someone vaguely mentioned activity around %s, something about %s, take that with a grain of salt.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_low_4">
-		<text>I might have heard something about %s near %s, but I'm not certain.</text>
+		<text>I might have heard something about %s, think it was %s, but I'm not certain.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_low_5">
-		<text>There might be %s around %s from what little I've heard.</text>
+		<text>There might be some movement around %s from what little I've heard, possibly %s.</text>
 	</string>
 
 	<!-- DYNAMIC STALKER MID -->
 	<string id="st_aflimod_line_dynamic_stalker_mid_1">
-		<text>Word is %s have been spotted around %s.</text>
+		<text>Word is around %s someone spotted %s.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_mid_2">
-		<text>Someone reported seeing %s moving around %s.</text>
+		<text>Someone reported seeing movement around %s, looked like %s.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_mid_3">
-		<text>From what I heard %s are moving through %s.</text>
+		<text>From what I heard, around %s someone saw %s moving through.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_mid_4">
-		<text>My buddy mentioned seeing %s around %s.</text>
+		<text>My buddy mentioned that %s there were %s around.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_mid_5">
-		<text>%s were reported in the area of %s not long ago.</text>
+		<text>Around %s somebody reported %s moving through.</text>
 	</string>
 
 	<!-- DYNAMIC STALKER HIGH -->
 	<string id="st_aflimod_line_dynamic_stalker_high_1">
-		<text>%s have been spotted around %s.</text>
+		<text>Around %s, %s have been spotted.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_high_2">
-		<text>There were %s seen around %s not long ago.</text>
+		<text>%s had %s moving through not long ago.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_high_3">
-		<text>%s are moving through %s.</text>
+		<text>%s is seeing %s moving through.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_high_4">
-		<text>%s have been reported moving through %s recently.</text>
+		<text>%s has had %s reported moving through recently.</text>
 	</string>
 	<string id="st_aflimod_line_dynamic_stalker_high_5">
 		<text>There is %s activity going on around %s.</text>
